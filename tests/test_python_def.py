@@ -95,16 +95,25 @@ def test_readable_function():
     go_to_companyname_homepage(page_url="https://companyname.com")
     find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
 
+
+def print_name(function, *args):
+    result_name = function.__name__.replace('_', ' ').title()
+    result_args = ', '.join(args)
+    res = f'{result_name} [{result_args}]'
+
+    return res
+
+
 def open_browser(browser_name):
-    actual_result = f"Open Browser [{browser_name}]"
+    actual_result = print_name(open_browser, browser_name)
     assert actual_result == "Open Browser [Chrome]"
 
 
 def go_to_companyname_homepage(page_url):
-    actual_result = f"Go To Companyname Homepage [{page_url}]"
+    actual_result =  print_name(go_to_companyname_homepage, page_url)
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
 
 
 def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = f"Find Registration Button On Login Page [{page_url}, {button_text}]"
+    actual_result = print_name(find_registration_button_on_login_page, page_url, button_text)
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
